@@ -19,4 +19,4 @@ class GroupMessage(models.Model):
         return f'{self.author.username} : {self.body}'
     
     class Meta:
-        ordering = ['-created'] #for showing latest msg at the bottom 
+        ordering = ['created'] #for showing latest msg at the bottom 
