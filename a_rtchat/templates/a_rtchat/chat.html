@@ -22,17 +22,22 @@
                 {% comment %} <form id="chat_message_form" method='POST' class="w-full"> {% endcomment %}
 
 
-                {% comment %} hx-.... is for partial loading of page using HTMX {% endcomment %}
+                {% comment %} hx-.... is for partial loading of page using HTMX 
+                hx-post = "{% url 'home' %}"
+                hx-target = "#chat_messages"
+                hx-swap = "beforeend"
+                {% endcomment %}
 
                 <form id="chat_message_form" class="w-full"
-                    hx-post = "{% url 'home' %}"
-                    hx-target = "#chat_messages"
-                    hx-swap = "beforeend"
+                    hx-ext="ws"
+                    ws-connect = "/ws/chatroom/public-chat"
+                    ws-send
                     _="on htmx:afterRequest reset() me" 
                 >
                     {% csrf_token %}
 
                     {{ form }}
+
                 </form>
             </div>
         </div>
